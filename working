@@ -1,0 +1,86 @@
+# Line Follower Robot with Obstacle Avoidance
+
+## Working
+
+The robot combines line-following and obstacle-avoidance capabilities using infrared (IR) sensors, an ultrasonic sensor, a servo motor, and an Arduino-based control system.
+
+### 1. Pin Configuration
+
+The following components are connected to the Arduino:
+
+* **Motor Driver (L298N):** Controls the left and right DC motors.
+* **IR Sensors (L_S, R_S):** Detect the line for navigation.
+* **Ultrasonic Sensor (Trigger, Echo):** Measures the distance to obstacles.
+* **Servo Motor:** Rotates the ultrasonic sensor to scan the surroundings.
+
+### 2. System Initialization
+
+During startup, the program:
+
+* Initializes serial communication.
+* Configures all pins as inputs or outputs.
+* Sets motor speeds using PWM signals.
+* Positions the servo motor at predefined angles.
+* Measures the initial distance using the ultrasonic sensor.
+
+### 3. Robot Operation
+
+The robot continuously monitors the IR sensors and ultrasonic sensor to determine its movement.
+
+#### Line Following
+
+* Moves forward when both sensors detect the track correctly and no obstacle is present.
+* Turns right when the right sensor detects the line while the left sensor does not.
+* Turns left when the left sensor detects the line while the right sensor does not.
+
+#### Obstacle Detection and Avoidance
+
+* When an obstacle is detected within a predefined distance, the robot stops.
+* The servo motor rotates the ultrasonic sensor to measure distances on both sides.
+* The robot compares the available space on the left and right.
+* It then turns toward the direction with more clearance and continues moving.
+
+### 4. Supporting Functions
+
+#### ServoPulse()
+
+Generates the pulse signals required to control the servo motor angle.
+
+#### Ultrasonic_read()
+
+Measures the distance between the robot and nearby obstacles using the ultrasonic sensor.
+
+#### Check_side() and compareDistance()
+
+Evaluate distances on both sides of the robot and determine the safest direction for movement.
+
+---
+
+## Hardware Testing
+
+The robot was tested under various operating conditions to verify both line-following and obstacle-avoidance performance.
+
+### Testing Procedure
+
+1. Power on the robot.
+2. Calibrate the IR sensors to ensure accurate detection of the line and surrounding surfaces.
+3. Verify obstacle detection using the ultrasonic sensor.
+4. Test movement functions, including:
+
+   * Forward movement
+   * Reverse movement
+   * Left turn
+   * Right turn
+   * Stop operation
+5. Observe the robot's ability to follow the track and avoid obstacles autonomously.
+
+The tests confirmed that the robot could successfully track the line and navigate around obstacles without manual intervention.
+
+---
+
+## Conclusion
+
+This project demonstrates the development of an intelligent line-following robot with obstacle-avoidance capabilities using Arduino and the L298N motor driver. 
+By integrating IR sensors for line detection and an ultrasonic sensor for obstacle sensing, the robot can autonomously follow a predefined path while safely navigating around obstacles.
+
+The project provided valuable experience in embedded systems, sensor interfacing, motor control, robotics, and Arduino programming. It serves as a practical example of autonomous robotic navigation and can be further enhanced with advanced path-planning and control algorithms.
